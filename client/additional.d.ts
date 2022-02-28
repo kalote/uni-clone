@@ -5,7 +5,15 @@ interface Window {
   ethereum: any;
 }
 
+interface SwapData {
+  addressTo: string;
+  amount: string;
+}
+
 interface TxContext {
   connectWallet: (metamask?: Window.ethereum) => Promise<void>;
   currentAccount: string;
+  sendTransaction: (metamask?: any, connectedAccount?: string) => Promise<void>;
+  handleChange: (e: React.FormEvent<HTMLInputElement>, type: string) => void;
+  formData: SwapData;
 }

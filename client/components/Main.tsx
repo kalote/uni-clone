@@ -1,8 +1,9 @@
+import React, { useContext } from "react";
 import Image from "next/image";
 import { RiSettings3Fill } from "react-icons/ri";
 import { AiOutlineDown } from "react-icons/ai";
 import ethLogo from "../assets/eth.png";
-import React from "react";
+import { TransactionContext } from "../context/transactionContext";
 
 const styles = {
   wrapper: `w-screen flex items-center justify-center mt-14`,
@@ -19,11 +20,19 @@ const styles = {
 };
 
 const Main = () => {
-  const handleSubmit = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {};
-  const handleChange = (
-    e: React.FormEvent<HTMLInputElement>,
-    type: string
-  ): void => {};
+  const { formData, handleChange, sendTransaction } = useContext(
+    TransactionContext
+  ) as TxContext;
+
+  const handleSubmit = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { addressTo, amount } = formData;
+    e.preventDefault();
+
+    if (!addressTo || !amount) return;
+
+    sendTransaction();
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
