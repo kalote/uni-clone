@@ -16,4 +16,12 @@ interface TxContext {
   sendTransaction: (metamask?: any, connectedAccount?: string) => Promise<void>;
   handleChange: (e: React.FormEvent<HTMLInputElement>, type: string) => void;
   formData: SwapData;
+  isLoading: boolean;
+}
+
+interface TxItem {
+  amount: string;
+  toAddress: string;
+  timestamp: string;
+  txHash: string;
 }
